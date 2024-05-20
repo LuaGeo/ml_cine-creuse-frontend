@@ -15,9 +15,8 @@ const MovieCard = ({ movie }) => {
             <Stars movie={movie} />
           </div>
           <div className="bottom-movie-card">
-            <button>+ Favoris</button>
-            <p>{movie.averageRating}</p>
-            <p>{movie.runtimeMinutes} min</p>
+            <button>+</button>
+            <p>{movie.main_genre}</p>
           </div>
         </div>
       </div>

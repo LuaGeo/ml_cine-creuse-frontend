@@ -4,10 +4,6 @@ import MovieCard from "./MovieCard.jsx";
 const CarouselRecommendations = ({ movieTitle }) => {
   const { recommendations, error } = useMovieRecommendations(movieTitle);
 
-  console.log("Received movie title:", movieTitle);
-  console.log("Recommendations:", recommendations);
-  console.log("Error:", error);
-
   if (error) return <p>{error}</p>;
 
   return (

@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import useMovieGenres from "../hooks/useMovieGenres";
 
-const GenreButtons = () => {
-  const genres = useMovieGenres();
+const GenreButtons = ({ genres }) => {
   const navigate = useNavigate();
 
   const handleGenreClick = (genreId) => {
@@ -14,8 +12,8 @@ const GenreButtons = () => {
       <h2>Genres</h2>
       <div className="buttons-container">
         {genres.map((genre) => (
-          <button key={genre.id} onClick={() => handleGenreClick(genre.id)}>
-            {genre.name}
+          <button key={genre} onClick={() => handleGenreClick(genre)}>
+            {genre}
           </button>
         ))}
       </div>

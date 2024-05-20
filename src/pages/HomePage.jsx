@@ -2,10 +2,18 @@ import SplashImages from "../components/SplashImages";
 import useSplashMovies from "../hooks/useSplashMovies";
 import CarouselRecommendations from "../components/CarouselRecommendations";
 import GenreButtons from "../components/GenreButtons";
+import useMovieGenres from "../hooks/useMovieGenres";
 
 const HomePage = () => {
   const { splashMovies, error } = useSplashMovies();
+  const { genres, error: genresError } = useMovieGenres();
   const firstMovieTitle = splashMovies[0]?.title;
+
+  console.log("Splash Movies:", splashMovies); // Debugging
+  console.log("Genres:", genres);
+
+  if (error) return <p>{error}</p>;
+  if (genresError) return <p>{genresError}</p>;
 
   return (
     <div className="container">
@@ -18,7 +26,7 @@ const HomePage = () => {
           <h2>Recommendations</h2>
           <CarouselRecommendations movieTitle={firstMovieTitle} />
         </div>
-        <GenreButtons />
+        <GenreButtons genres={genres} />
       </div>
     </div>
   );

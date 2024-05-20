@@ -3,29 +3,23 @@ import axios from "axios";
 
 const useMovieGenres = () => {
   const [genres, setGenres] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/genre/movie/list?language=en`;
-    const bearerToken = import.meta.env.VITE_TOKEN;
-
-    axios
-      .get(url, {
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${bearerToken}`,
-        },
-      })
-      .then((response) => {
-        console.log("Genres fetched:", response.data.genres); // Check the fetched data
-        setGenres(response.data.genres);
-      })
-      .catch((error) => {
+    const fetchGenres = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:5000/genres`);
+        setGenres(response.data);
+      } catch (error) {
         console.error("Error fetching genres:", error);
-        console.error(error.response); // This will give you more insight into what went wrong
-      });
+        setError("An unexpected error occurred. Please try again later.");
+      }
+    };
+
+    fetchGenres();
   }, []);
 
-  return genres;
+  return { genres, error };
 };
 
 export default useMovieGenres;
