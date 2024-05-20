@@ -1,4 +1,3 @@
-// src/components/SearchBar.js
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,21 +9,18 @@ const SearchBar = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const navigate = useNavigate();
-  const apiKey = import.meta.env.VITE_API_KEY;
 
   const handleSearchChange = (event) => {
     const searchTerm = event.target.value;
     setQuery(searchTerm);
     if (searchTerm.length > 2) {
       fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-          searchTerm
-        )}`
+        `http://127.0.0.1:5000/search?query=${encodeURIComponent(searchTerm)}`
       )
         .then((response) => response.json())
         .then((data) => {
-          if (data.results) {
-            setResults(data.results);
+          if (data) {
+            setResults(data);
           }
         })
         .catch((err) => console.error("Error fetching search results:", err));
@@ -42,7 +38,7 @@ const SearchBar = () => {
       setSelectedIndex(selectedIndex - 1);
     } else if (event.keyCode === 13 && selectedIndex > -1) {
       // Enter key
-      navigate(`/movie/${results[selectedIndex].id}`);
+      navigate(`/movie/${results[selectedIndex].titleId}`);
       setResults([]); // Clear results to hide the dropdown
       setQuery(""); // Optionally clear the query
     }
@@ -71,15 +67,14 @@ const SearchBar = () => {
         onChange={handleSearchChange}
         onFocus={() => setIsFocused(true)}
         onBlur={handleBlur}
-        // onBlur={() => setIsFocused(false)}
         onKeyDown={handleKeyDown}
       />
       {results.length > 0 && isFocused && (
         <ul className="results-dropdown">
           {results.map((movie, index) => (
             <li
-              key={movie.id}
-              onClick={() => handleResultClick(movie.id)}
+              key={movie.titleId}
+              onClick={() => handleResultClick(movie.titleId)}
               className={index === selectedIndex ? "selected" : ""}
             >
               {movie.title}
