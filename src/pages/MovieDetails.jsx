@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CarouselRecommendations from "../components/CarouselRecommendations";
 import Stars from "../components/Stars";
+import CarouselActors from "../components/CarouselActors";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -45,19 +46,22 @@ const MovieDetails = () => {
           alt={movie.title}
         />
         <div className="movie-details-text">
-          <div>
-            <h2>{movie.title}</h2>
-            <h2 className="year">({year})</h2>
+          <div className="movie-details-text">
+            <div>
+              <h2>{movie.title}</h2>
+              <h2 className="year">({year})</h2>
+            </div>
+            <div className="genres">
+              <p>{formatedDate} •</p>
+              <p>{genres} •</p>
+              <p>{runtime}</p>
+            </div>
+            <Stars movie={movie} />
+            <div className="overview">
+              <p>{tmdbMovie.overview}</p>
+            </div>
           </div>
-          <div>
-            <p className="genres">{formatedDate} •</p>
-            <p className="genres">{genres} •</p>
-            <p className="genres">{runtime}</p>
-          </div>
-          <Stars movie={movie} />
-          <div className="overview">
-            <p>{tmdbMovie.overview}</p>
-          </div>
+          <CarouselActors tmdbCast={tmdbMovie.credits.cast} />
         </div>
       </div>
       <h4>Recommendations</h4>

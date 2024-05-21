@@ -310,11 +310,6 @@ h2 {
   padding-bottom: 15px;
 }
 
-.stars-container {
-  display: flex;
-  padding-top: 5px;
-}
-
 .text-gold {
   color: gold;
   font-size: 12px;
@@ -472,11 +467,6 @@ h4 {
   gap: 20px;
 }
 
-.movie-details {
-  display: flex;
-  gap: 20px;
-}
-
 .movie-details img {
   width: 300px;
 }
@@ -484,9 +474,20 @@ h4 {
 .movie-details-text {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
-.movie-details-text > div {
+.movie-details-text > div:first-child {
+  display: flex;
+  gap: 10px;
+}
+
+.stars-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.carousel-actors {
   display: flex;
   gap: 10px;
 }
@@ -503,7 +504,42 @@ h4 {
 }
 
 .genres {
+  display: flex;
+  gap: 5px;
   color: #888;
+}
+
+.carousel-actors {
+  background-color: #ffffff83;
+  display: flex;
+  overflow-x: auto;
+  width: 400px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.actor {
+  width: 100px;
+  height: 200px; /* Set a fixed height for the actor container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.actor img {
+  width: 100px;
+  height: 120px;
+  object-fit: cover; /* Ensures the image covers the container if aspect ratio differs */
+}
+
+.details-actor-card-container > p:first-child {
+  font-size: 15px;
+  font-weight: bold;
+  color: #0f0f0f;
+}
+.details-actor-card-container > p {
+  font-size: 14px;
+  color: #262626;
 }
 
 /* ////////////////////////////////////////////// GENRE PAGES ////////////////////////////////////////////// */

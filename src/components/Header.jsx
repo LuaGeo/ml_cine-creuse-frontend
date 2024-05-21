@@ -35,7 +35,7 @@ const Header = ({
     <header>
       <div className="container">
         <nav>
-          <Link to="/">Home</Link>
+          <Link to="/">Accueil</Link>
           <Link to="/favorites">Favorites</Link>
         </nav>
         <div className="header_container">
