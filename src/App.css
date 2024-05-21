@@ -486,11 +486,24 @@ h4 {
   flex-direction: column;
 }
 
+.movie-details-text > div {
+  display: flex;
+  gap: 10px;
+}
+
+.year {
+  color: #888;
+}
+
 .overview {
   width: 400px;
   color: #f9f9f9;
   text-align: justify;
   margin-top: 25px;
+}
+
+.genres {
+  color: #888;
 }
 
 /* ////////////////////////////////////////////// GENRE PAGES ////////////////////////////////////////////// */
