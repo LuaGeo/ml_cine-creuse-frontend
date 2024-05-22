@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import CarouselRecommendations from "../components/CarouselRecommendations";
 import Stars from "../components/Stars";
 import CarouselActors from "../components/CarouselActors";
+import getUserIdFromCookie from "../hooks/getUserIdFromCookie";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [tmdbMovie, setTmdbMovie] = useState(null);
   const apiKey = import.meta.env.VITE_API_KEY;
+  const userId = getUserIdFromCookie();
 
   useEffect(() => {
     fetch(`http://127.0.0.1:5000/movie-details/${movieId}`)
@@ -65,7 +67,7 @@ const MovieDetails = () => {
         </div>
       </div>
       <h4>Recommendations</h4>
-      <CarouselRecommendations movieTitle={movie.title} />
+      <CarouselRecommendations movieTitle={movie.title} userId={userId} />
     </div>
   );
 };

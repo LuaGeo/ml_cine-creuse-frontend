@@ -4,11 +4,28 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const MovieCard = ({ movie, userId }) => {
-  const [isFavorite, setIsFavorite] = useState(movie.isFavorite);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    console.log(`Favorite state for movie ${movie.titleId}: ${isFavorite}`);
-  }, [isFavorite]);
+    // Fetch the favorite status when the component mounts
+    const fetchFavoriteStatus = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:5000/favorites`, {
+          params: {
+            userId,
+            movieId: movie.titleId,
+          },
+        });
+        setIsFavorite(response.data.isFavorite);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (userId && movie.titleId) {
+      fetchFavoriteStatus();
+    }
+  }, [userId, movie.titleId]);
 
   const handleFavoriteClick = async (event, movieId) => {
     event.stopPropagation();

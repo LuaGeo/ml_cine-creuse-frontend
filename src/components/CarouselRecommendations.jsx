@@ -1,10 +1,8 @@
 import useMovieRecommendations from "../hooks/useMovieRecommendations.js";
 import MovieCard from "./MovieCard.jsx";
-import getUserIdFromCookie from "../hooks/getUserIdFromCookie";
 
-const CarouselRecommendations = ({ movieTitle }) => {
+const CarouselRecommendations = ({ movieTitle, userId }) => {
   const { recommendations, error } = useMovieRecommendations(movieTitle);
-  const userId = getUserIdFromCookie();
 
   console.log("Retrieved userId from cookies:", userId);
 
