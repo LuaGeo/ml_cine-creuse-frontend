@@ -36,7 +36,15 @@ const Header = ({
       <div className="container">
         <nav>
           <Link to="/">Accueil</Link>
+          <p>|</p>
           <Link to="/favorites">Favorites</Link>
+          <p>|</p>
+          <Link
+            to="https://hackathon-salary-prediction.streamlit.app/"
+            target="_blank"
+          >
+            Tableau de Bord
+          </Link>
         </nav>
         <div className="header_container">
           <div className="logo_container">

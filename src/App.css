@@ -47,6 +47,11 @@ nav {
   padding: 10px 0;
 }
 
+nav p {
+  color: #f8b319;
+  font-weight: 900;
+}
+
 nav a {
   color: #f8b319; /* Adjust the color to match your design */
   text-decoration: none; /* Removes underline */
@@ -473,12 +478,14 @@ h4 {
 
 .movie-details-text {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .movie-details-text > div:first-child {
   display: flex;
+  width: 100%;
   gap: 10px;
 }
 
@@ -487,17 +494,12 @@ h4 {
   align-items: flex-end;
 }
 
-.carousel-actors {
-  display: flex;
-  gap: 10px;
-}
-
 .year {
   color: #888;
 }
 
 .overview {
-  width: 400px;
+  width: 100%;
   color: #f9f9f9;
   text-align: justify;
   margin-top: 25px;
@@ -510,12 +512,13 @@ h4 {
 }
 
 .carousel-actors {
-  background-color: #ffffff83;
+  background-color: #000000;
   display: flex;
   overflow-x: auto;
-  width: 400px;
+  width: 650px;
   margin-top: 30px;
   padding: 10px;
+  gap: 10px;
 }
 
 .actor {
@@ -535,11 +538,11 @@ h4 {
 .details-actor-card-container > p:first-child {
   font-size: 15px;
   font-weight: bold;
-  color: #0f0f0f;
+  color: #ffffff;
 }
 .details-actor-card-container > p {
   font-size: 14px;
-  color: #262626;
+  color: #ffffff;
 }
 
 /* ////////////////////////////////////////////// GENRE PAGES ////////////////////////////////////////////// */
