@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import creuseLogo from "../assets/creuse-logo.png";
 import SearchBar from "./SearchBar";
+import getUserIdFromCookie from "../hooks/getUserIdFromCookie";
 import getUsernameFromCookie from "../hooks/getUsernameFromCookie";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
@@ -20,6 +21,7 @@ const Header = ({
   useEffect(() => {
     const user = getUsernameFromCookie();
     setUsername(user);
+    const userId = getUserIdFromCookie();
   }, []);
 
   const handleLogout = () => {
@@ -29,6 +31,7 @@ const Header = ({
     handleUserData(null); // Clear user data
     Cookies.remove("token");
     Cookies.remove("username");
+    Cookies.remove("userId");
     navigate("/"); // Navigate to the home page after logout
   };
   return (

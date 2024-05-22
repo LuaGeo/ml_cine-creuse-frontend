@@ -1,8 +1,10 @@
 import useMovieRecommendations from "../hooks/useMovieRecommendations.js";
 import MovieCard from "./MovieCard.jsx";
+import getUserIdFromCookie from "../hooks/getUserIdFromCookie";
 
 const CarouselRecommendations = ({ movieTitle }) => {
   const { recommendations, error } = useMovieRecommendations(movieTitle);
+  const userId = getUserIdFromCookie();
 
   if (error) return <p>{error}</p>;
 
@@ -11,7 +13,7 @@ const CarouselRecommendations = ({ movieTitle }) => {
       <div className="carousel">
         {recommendations.length > 0 ? (
           recommendations.map((movie) => (
-            <MovieCard key={movie.titleId} movie={movie} />
+            <MovieCard key={movie.titleId} movie={movie} userId={userId} />
           ))
         ) : (
           <p>No recommendations available.</p>
