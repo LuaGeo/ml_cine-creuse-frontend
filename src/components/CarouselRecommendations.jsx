@@ -6,6 +6,8 @@ const CarouselRecommendations = ({ movieTitle }) => {
   const { recommendations, error } = useMovieRecommendations(movieTitle);
   const userId = getUserIdFromCookie();
 
+  console.log("Retrieved userId from cookies:", userId);
+
   if (error) return <p>{error}</p>;
 
   return (

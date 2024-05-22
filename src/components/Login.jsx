@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 const Login = ({ isVisible, onClose, onUserLogin }) => {
   const [username, setUsername] = useState("");
@@ -22,7 +23,13 @@ const Login = ({ isVisible, onClose, onUserLogin }) => {
     if (response.ok) {
       const data = await response.json();
       alert("Login successful: " + data.message);
-      onUserLogin({ token: data.token, username: data.username });
+      Cookies.set("token", data.token); // Store token in cookies
+      Cookies.set("userId", data.userId); // Store userId in cookies
+      onUserLogin({
+        token: data.token,
+        username: data.username,
+        userId: data.userId,
+      });
       onClose(); // Close the modal on successful login
     } else {
       const data = await response.json();

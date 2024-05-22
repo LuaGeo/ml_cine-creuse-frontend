@@ -15,6 +15,7 @@ const MovieCard = ({ movie, userId }) => {
     event.preventDefault();
 
     console.log("handleFavoriteClick was called");
+    console.log(`UserId: ${userId}, MovieId: ${movieId}`);
 
     try {
       if (isFavorite) {
