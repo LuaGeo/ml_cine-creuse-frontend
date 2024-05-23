@@ -28,7 +28,7 @@ const Login = ({ isVisible, onClose, onUserLogin }) => {
       onUserLogin({
         token: data.token,
         username: data.username,
-        //userId: data.userId,
+        userId: data.userId,
       });
       onClose(); // Close the modal on successful login
     } else {
