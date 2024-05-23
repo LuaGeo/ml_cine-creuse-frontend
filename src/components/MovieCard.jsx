@@ -1,56 +1,24 @@
 import { Link } from "react-router-dom";
 import Stars from "./Stars.jsx";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { useFavorites } from "../hooks/favoritesContext";
 
-const MovieCard = ({ movie, userId }) => {
+const MovieCard = ({ movie }) => {
+  const { favoriteMovies, addFavorite, removeFavorite } = useFavorites();
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // Fetch the favorite status when the component mounts
-    const fetchFavoriteStatus = async () => {
-      try {
-        const response = await axios.get(`http://127.0.0.1:5000/favorites`, {
-          params: {
-            userId,
-            movieId: movie.titleId,
-          },
-        });
-        setIsFavorite(response.data.isFavorite);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (userId && movie.titleId) {
-      fetchFavoriteStatus();
-    }
-  }, [userId, movie.titleId]);
+    setIsFavorite(favoriteMovies.includes(movie.titleId));
+  }, [favoriteMovies, movie.titleId]);
 
   const handleFavoriteClick = async (event, movieId) => {
-    event.stopPropagation();
-    event.preventDefault();
+    event.stopPropagation(); // Prevent the Link from being triggered
+    event.preventDefault(); // Prevent the default action
 
-    console.log("handleFavoriteClick was called");
-    console.log(`UserId: ${userId}, MovieId: ${movieId}`);
-
-    try {
-      if (isFavorite) {
-        await axios.delete(`http://127.0.0.1:5000/favorites`, {
-          data: {
-            movieId,
-            userId,
-          },
-        });
-      } else {
-        await axios.post("http://127.0.0.1:5000/favorites", {
-          movieId,
-          userId,
-        });
-      }
-      setIsFavorite(!isFavorite);
-    } catch (error) {
-      console.log(error);
+    if (isFavorite) {
+      await removeFavorite(movieId);
+    } else {
+      await addFavorite(movieId);
     }
   };
   return (

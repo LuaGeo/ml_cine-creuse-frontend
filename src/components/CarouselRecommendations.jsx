@@ -13,7 +13,7 @@ const CarouselRecommendations = ({ movieTitle, userId }) => {
       <div className="carousel">
         {recommendations.length > 0 ? (
           recommendations.map((movie) => (
-            <MovieCard key={movie.titleId} movie={movie} userId={userId} />
+            <MovieCard key={movie.titleId} movie={movie} />
           ))
         ) : (
           <p>No recommendations available.</p>

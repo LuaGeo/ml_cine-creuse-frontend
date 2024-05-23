@@ -3,14 +3,15 @@ import { useParams } from "react-router-dom";
 import CarouselRecommendations from "../components/CarouselRecommendations";
 import Stars from "../components/Stars";
 import CarouselActors from "../components/CarouselActors";
-import getUserIdFromCookie from "../hooks/getUserIdFromCookie";
+import { useFavorites } from "../hooks/favoritesContext";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [tmdbMovie, setTmdbMovie] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
   const apiKey = import.meta.env.VITE_API_KEY;
-  const userId = getUserIdFromCookie();
+  const { favoriteMovies, addFavorite, removeFavorite } = useFavorites();
 
   useEffect(() => {
     fetch(`http://127.0.0.1:5000/movie-details/${movieId}`)
@@ -28,6 +29,10 @@ const MovieDetails = () => {
       .catch((error) => console.error("Error fetching movie details:", error));
   }, [movieId]);
 
+  useEffect(() => {
+    setIsFavorite(favoriteMovies.includes(movieId));
+  }, [favoriteMovies, movieId]);
+
   if (!movie || !tmdbMovie) return <div>Loading...</div>;
 
   const releaseDate = tmdbMovie.release_date;
@@ -39,6 +44,14 @@ const MovieDetails = () => {
   const runtime_h = (tmdbMovie.runtime / 60).toFixed();
   const runtime_m = tmdbMovie.runtime % 60;
   const runtime = `${runtime_h}h ${runtime_m}min`;
+
+  const handleFavoriteClick = async () => {
+    if (isFavorite) {
+      await removeFavorite(movieId);
+    } else {
+      await addFavorite(movieId);
+    }
+  };
 
   return (
     <div className="center-content container">
@@ -59,6 +72,9 @@ const MovieDetails = () => {
               <p>{runtime}</p>
             </div>
             <Stars movie={movie} />
+            <button onClick={handleFavoriteClick}>
+              {isFavorite ? "✓" : "+"}
+            </button>
             <div className="overview">
               <p>{tmdbMovie.overview}</p>
             </div>
@@ -67,7 +83,7 @@ const MovieDetails = () => {
         </div>
       </div>
       <h4>Recommendations</h4>
-      <CarouselRecommendations movieTitle={movie.title} userId={userId} />
+      <CarouselRecommendations movieTitle={movie.title} />
     </div>
   );
 };
