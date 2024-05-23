@@ -23,8 +23,8 @@ const Login = ({ isVisible, onClose, onUserLogin }) => {
     if (response.ok) {
       const data = await response.json();
       alert("Login successful: " + data.message);
-      Cookies.set("token", data.token); // Store token in cookies
-      Cookies.set("userId", data.userId); // Store userId in cookies
+      Cookies.set("token", data.token, { secure: true, sameSite: "None" }); // Store token in cookies
+      Cookies.set("userId", data.userId, { secure: true, sameSite: "None" }); // Store userId in cookies
       onUserLogin({
         token: data.token,
         username: data.username,
