@@ -15,6 +15,7 @@ const Header = ({
   token,
   username,
   setUsername,
+  userId,
 }) => {
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ const Header = ({
         <nav>
           <Link to="/">Accueil</Link>
           <p>|</p>
-          <Link to="/favorites">Favorites</Link>
+          <Link to={`/favorites/list/${userId}`}>Favorites</Link>
           <p>|</p>
           <Link
             to="https://hackathon-salary-prediction.streamlit.app/"
