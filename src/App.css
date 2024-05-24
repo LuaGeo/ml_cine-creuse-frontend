@@ -545,6 +545,11 @@ h4 {
   color: #ffffff;
 }
 
+.movie-details-button {
+  width: 40px;
+  border-radius: 5px;
+}
+
 /* ////////////////////////////////////////////// GENRE PAGES ////////////////////////////////////////////// */
 
 .genre-pages {

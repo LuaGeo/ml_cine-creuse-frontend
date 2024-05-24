@@ -1,36 +1,49 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
-// import Cookies from "js-cookie";
+import { useParams } from "react-router-dom";
 
 const FavoritesPage = () => {
-  const [favorites, setFavorites] = useState([]);
+  const { userId } = useParams();
+  const [favoriteMovies, setFavoritesMovies] = useState([]);
 
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const token = Cookies.get("token"); // Ensure you are importing Cookies
-        const response = await axios.get("/favorites", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setFavorites(response.data);
+        const response = await axios.get(
+          `http://127.0.0.1:5000/favorites/list/${userId}`
+        );
+        const movieIds = response.data.favoriteMovies;
+        const movies = await Promise.all(
+          movieIds.map(async (movieId) => {
+            const movieResponse = await axios.get(
+              `http://127.0.0.1:5000/movie-details/${movieId}`
+            );
+            return movieResponse.data;
+          })
+        );
+        setFavoritesMovies(movies);
       } catch (error) {
-        console.error("Failed to fetch favorites:", error);
+        console.error("Error fetching favorite movies:", error);
       }
     };
 
-    fetchFavorites();
-  }, []);
+    if (userId) {
+      fetchFavorites();
+    }
+  }, [userId]);
+
+  if (!favoriteMovies.length) {
+    return <div>No favorite movies found.</div>;
+  }
 
   return (
     <div>
-      <h1>Favorites</h1>
-      <div>
-        {favorites.length > 0 ? (
-          favorites.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-        ) : (
-          <p>No favorite movies found.</p>
-        )}
+      <h1>Your Favorite Movies</h1>
+      <div className="movie-cards-container">
+        {favoriteMovies.map((movie) => (
+          <MovieCard key={movie.titleId} movie={movie} />
+        ))}
       </div>
     </div>
   );

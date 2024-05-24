@@ -72,7 +72,10 @@ const MovieDetails = () => {
               <p>{runtime}</p>
             </div>
             <Stars movie={movie} />
-            <button onClick={handleFavoriteClick}>
+            <button
+              className="movie-details-button"
+              onClick={handleFavoriteClick}
+            >
               {isFavorite ? "✓" : "+"}
             </button>
             <div className="overview">
