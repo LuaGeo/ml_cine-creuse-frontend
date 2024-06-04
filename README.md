@@ -2,8 +2,9 @@
 ## Data Analyse Course at Wild Code School, Paris
 
 Luana de Oliveira
-Karolina
-Patrick
+Karolina Jedrzejewskaa (https://github.com/karolinajedrzejewskaa)
+Patrick (https://github.com/Patrick-NII)
 Teddy
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/M5onhrBMHno?si=4a-41nX9qiWKB316" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+https://github.com/LuaGeo/test_ml_cine-creuse-frontend/assets/69927562/3dfc9e26-98dc-4479-a1c1-3105f03f3332
+
