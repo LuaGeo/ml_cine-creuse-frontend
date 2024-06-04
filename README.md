@@ -1,8 +1,23 @@
-# React + Vite
+# Movies Recommendations - Machine Learning Project
+## Data Analyse Course at Wild Code School, Paris
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Projet-de-Systeme-de-Recommandation-de-Films_1.pptx](https://github.com/user-attachments/files/15550478/Projet-de-Systeme-de-Recommandation-de-Films_1.pptx)
 
-Currently, two official plugins are available:
+> Tools:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React + Vite <br>
+Flask (Backend) : https://github.com/LuaGeo/test_ml_cine-creuse-backend <br>
+Streamlite : https://github.com/Teidhi/projet.2/tree/master
+
+Dashboard/Streamlit page: https://dashboard-cinecreuse.streamlit.app/
+
+
+> Crew:
+
+Luana de Oliveira <br>
+Karolina Jedrzejewskaa (https://github.com/karolinajedrzejewskaa) <br>
+Patrick (https://github.com/Patrick-NII) <br>
+Teddy (https://github.com/Teidhi)
+
+https://github.com/LuaGeo/test_ml_cine-creuse-frontend/assets/69927562/3dfc9e26-98dc-4479-a1c1-3105f03f3332
+
