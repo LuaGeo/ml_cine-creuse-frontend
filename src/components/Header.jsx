@@ -35,16 +35,25 @@ const Header = ({
     Cookies.remove("userId");
     navigate("/"); // Navigate to the home page after logout
   };
+
+  const handleAccueilClick = (e) => {
+    e.preventDefault();
+    navigate("/");
+    window.location.reload();
+  };
+
   return (
     <header>
       <div className="container">
         <nav>
-          <Link to="/">Accueil</Link>
+          <Link to="/" onClick={handleAccueilClick}>
+            Accueil
+          </Link>
           <p>|</p>
           <Link to={`/favorites/list/${userId}`}>Favorites</Link>
           <p>|</p>
           <Link
-            to="https://hackathon-salary-prediction.streamlit.app/"
+            to="https://dashboard-cinecreuse.streamlit.app/"
             target="_blank"
           >
             Tableau de Bord
@@ -52,10 +61,14 @@ const Header = ({
         </nav>
         <div className="header_container">
           <div className="logo_container">
-            <Link to="/">
+            <Link to="/" onClick={handleAccueilClick}>
               <img src={creuseLogo} alt="Ciné La Creuse Logo" />
             </Link>
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link
+              to="/"
+              onClick={handleAccueilClick}
+              style={{ textDecoration: "none" }}
+            >
               <div className="cine_name_container">
                 <h1>Ciné</h1>
                 <h1>La Creuse</h1>

@@ -8,7 +8,7 @@ const useMovieGenres = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:5000/genres`);
+        const response = await axios.get(`http://127.0.0.1:8000/genres`);
         setGenres(response.data);
       } catch (error) {
         console.error("Error fetching genres:", error);

@@ -11,13 +11,13 @@ const FavoritesPage = () => {
     const fetchFavorites = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:5000/favorites/list/${userId}`
+          `http://127.0.0.1:8000/favorites/list/${userId}`
         );
         const movieIds = response.data.favoriteMovies;
         const movies = await Promise.all(
           movieIds.map(async (movieId) => {
             const movieResponse = await axios.get(
-              `http://127.0.0.1:5000/movie-details/${movieId}`
+              `http://127.0.0.1:8000/movie-details/${movieId}`
             );
             return movieResponse.data;
           })

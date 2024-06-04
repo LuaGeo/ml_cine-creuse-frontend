@@ -18,7 +18,7 @@ const SignUp = ({ isVisible, onClose, onLoginClick }) => {
       body: JSON.stringify({ username, email, password }),
     };
 
-    const response = await fetch("http://localhost:5000/register", requestData);
+    const response = await fetch("http://localhost:8000/register", requestData);
 
     if (response.ok) {
       const data = await response.json();

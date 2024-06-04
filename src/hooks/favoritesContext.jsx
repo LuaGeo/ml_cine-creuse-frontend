@@ -16,7 +16,7 @@ export const FavoritesProvider = ({ children }) => {
     const fetchFavoriteMovies = async () => {
       if (userId) {
         try {
-          const response = await axios.get("http://127.0.0.1:5000/favorites", {
+          const response = await axios.get("http://127.0.0.1:8000/favorites", {
             params: { userId },
           });
           setFavoriteMovies(response.data.favoriteMovies || []);
@@ -31,7 +31,7 @@ export const FavoritesProvider = ({ children }) => {
 
   const addFavorite = async (movieId) => {
     try {
-      await axios.post("http://127.0.0.1:5000/favorites", {
+      await axios.post("http://127.0.0.1:8000/favorites", {
         movieId,
         userId,
       });
@@ -47,7 +47,7 @@ export const FavoritesProvider = ({ children }) => {
 
   const removeFavorite = async (movieId) => {
     try {
-      await axios.delete("http://127.0.0.1:5000/favorites", {
+      await axios.delete("http://127.0.0.1:8000/favorites", {
         data: {
           movieId,
           userId,

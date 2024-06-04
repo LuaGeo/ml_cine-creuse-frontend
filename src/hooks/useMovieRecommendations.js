@@ -13,7 +13,7 @@ const useMovieRecommendations = (movieTitle) => {
         console.log(`Fetching recommendations for: ${movieTitle}`);
         // Fetch recommendations from your backend
         const { data: recommendedMovies } = await axios.get(
-          `http://127.0.0.1:5000/recommendations`,
+          `http://127.0.0.1:8000/recommendations`,
           {
             params: { title: movieTitle },
           }

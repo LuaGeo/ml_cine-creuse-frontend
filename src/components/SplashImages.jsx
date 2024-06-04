@@ -2,8 +2,8 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
 
-const SplashImages = ({ movies }) => {
-  if (!movies || movies.length === 0) {
+const SplashImages = ({ splashMovies }) => {
+  if (!splashMovies || splashMovies.length === 0) {
     return <div>Loading...</div>; // Or any other loading indicator
   }
   return (
@@ -15,19 +15,30 @@ const SplashImages = ({ movies }) => {
       showStatus={false}
       showThumbs={false}
     >
-      {movies.map((movie) => (
-        <div key={movie.titleId} className="movie">
-          <p>{movie.title}</p>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-            alt={movie.title}
-          />
-          <button>+ Favoris</button>
-          <Link to={`/movie/${movie.titleId}`}>
-            <button>Infos...</button>
-          </Link>
-        </div>
-      ))}
+      {splashMovies.map((movie) => {
+        console.log(`Movie: ${movie.title}, Backdrop: ${movie.backdrop_path}`);
+        const imageUrl = movie.backdrop_path
+          ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+          : "https://via.placeholder.com/500x281?text=No+Image+Available";
+
+        return (
+          <div key={movie.imdb_id} className="movie">
+            <p>{movie.title}</p>
+            <img
+              src={imageUrl}
+              alt={movie.title}
+              onError={(e) => {
+                e.target.src =
+                  "https://via.placeholder.com/500x281?text=No+Image+Available";
+              }}
+            />
+            <button>+ Favoris</button>
+            <Link to={`/movie/${movie.imdb_id}`}>
+              <button>Infos...</button>
+            </Link>
+          </div>
+        );
+      })}
     </Carousel>
   );
 };

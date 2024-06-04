@@ -14,7 +14,7 @@ const MovieDetails = () => {
   const { favoriteMovies, addFavorite, removeFavorite } = useFavorites();
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:5000/movie-details/${movieId}`)
+    fetch(`http://127.0.0.1:8000/movie-details/${movieId}`)
       .then((response) => response.json())
       .then((data) => setMovie(data))
       .catch((error) => console.error("Error fetching movie details:", error));

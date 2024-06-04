@@ -15,7 +15,7 @@ const SearchBar = () => {
     setQuery(searchTerm);
     if (searchTerm.length > 2) {
       fetch(
-        `http://127.0.0.1:5000/search?query=${encodeURIComponent(searchTerm)}`
+        `http://127.0.0.1:8000/search?query=${encodeURIComponent(searchTerm)}`
       )
         .then((response) => response.json())
         .then((data) => {
