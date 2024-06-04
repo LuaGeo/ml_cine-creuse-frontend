@@ -1,6 +1,13 @@
 # Movies Recommendations - Machine Learning Project
 ## Data Analyse Course at Wild Code School, Paris
 
+[Projet-de-Systeme-de-Recommandation-de-Films_1.pptx](https://github.com/user-attachments/files/15550478/Projet-de-Systeme-de-Recommandation-de-Films_1.pptx)
+
+> Tools:
+React + Vite <br>
+Flask (Backend) : https://github.com/LuaGeo/test_ml_cine-creuse-backend
+
+> Crew:
 Luana de Oliveira <br>
 Karolina Jedrzejewskaa (https://github.com/karolinajedrzejewskaa) <br>
 Patrick (https://github.com/Patrick-NII) <br>
