@@ -13,8 +13,7 @@ Dashboard/Streamlit page: https://dashboard-cinecreuse.streamlit.app/
 
 
 > Crew:
-
-Luana de Oliveira <br>
+<a href="https://github.com/LuaGeo" target="_blank">Luana de Oliveira</a>
 <a href="https://github.com/karolinajedrzejewskaa" target="_blank">Karolina Jedrzejewskaa</a>
 <a href="https://github.com/Patrick-NII" target="_blank">Patrick</a>
 <a href="https://github.com/Teidhi" target="_blank">Teddy</a>
