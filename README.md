@@ -7,7 +7,7 @@
 
 React + Vite <br>
 Flask (Backend) : https://github.com/LuaGeo/test_ml_cine-creuse-backend <br>
-Streamlite : https://github.com/Teidhi/projet.2/tree/master
+Streamlit : https://github.com/Teidhi/projet.2/tree/master
 
 Dashboard/Streamlit page: https://dashboard-cinecreuse.streamlit.app/
 
