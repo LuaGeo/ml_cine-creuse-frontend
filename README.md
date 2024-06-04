@@ -3,14 +3,12 @@
 
 [Projet-de-Systeme-de-Recommandation-de-Films_1.pptx](https://github.com/user-attachments/files/15550478/Projet-de-Systeme-de-Recommandation-de-Films_1.pptx)
 
-> Tools:
+> Tools: <br>
+**React + Vite** <br>
+<a href="https://github.com/LuaGeo/test_ml_cine-creuse-backend" target="_blank">**Flask (Backend)**</a> <br>
+<a href="https://github.com/Teidhi/projet.2/tree/master" target="_blank">**Streamlit**</a> <br>
 
-React + Vite <br>
-Flask (Backend) : https://github.com/LuaGeo/test_ml_cine-creuse-backend <br>
-Streamlit : https://github.com/Teidhi/projet.2/tree/master
-
-Dashboard/Streamlit page: https://dashboard-cinecreuse.streamlit.app/
-
+> <a href="https://dashboard-cinecreuse.streamlit.app/" target="_blank">**Dashboard/Streamlit page**</a> <br>
 
 > Crew: <br>
 <a href="https://github.com/LuaGeo" target="_blank">Luana de Oliveira</a> <br>
