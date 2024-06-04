@@ -1,8 +1,9 @@
-# React + Vite
+# Movies Recommendations - Machine Learning Project
+## Data Analyse Course at Wild Code School, Paris
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Luana de Oliveira
+Karolina
+Patrick
+Teddy
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">](https://youtu.be/M5onhrBMHno?si=4a-41nX9qiWKB316 "Now in Android: 55")
