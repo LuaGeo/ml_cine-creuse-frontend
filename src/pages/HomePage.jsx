@@ -2,18 +2,19 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import SplashImages from "../components/SplashImages";
 import useSplashMovies from "../hooks/useSplashMovies";
-import CarouselRecommendations from "../components/CarouselRecommendations";
 import GenreButtons from "../components/GenreButtons";
 import useMovieGenres from "../hooks/useMovieGenres";
+import useTopMovies from "../hooks/useTopMovies";
+import MovieCard from "../components/MovieCard";
 
 const HomePage = () => {
   const { splashMovies, error } = useSplashMovies();
   const { genres, error: genresError } = useMovieGenres();
-  const firstMovieTitle = splashMovies[0]?.title;
+  const { movies: topMovies, error: topError } = useTopMovies();
   const location = useLocation();
 
   useEffect(() => {
-    console.log("Splash Movies:", splashMovies); // Debugging
+    console.log("Splash Movies:", splashMovies);
     console.log("Genres:", genres);
   }, [splashMovies, genres, location]);
 
@@ -33,7 +34,17 @@ const HomePage = () => {
             )}
           </div>
           <h2>Recommendations</h2>
-          <CarouselRecommendations movieTitle={firstMovieTitle} />
+          {topError ? (
+            <p>{topError}</p>
+          ) : (
+            <div className="carousel-wrapper">
+              <div className="carousel">
+                {topMovies.map((movie) => (
+                  <MovieCard key={movie.titleId} movie={movie} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
         <GenreButtons genres={genres} />
       </div>
