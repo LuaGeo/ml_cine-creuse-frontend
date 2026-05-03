@@ -71,7 +71,7 @@ const MovieDetails = () => {
               <p>{genres} •</p>
               <p>{runtime}</p>
             </div>
-            <Stars movie={movie} />
+            <Stars movie={{ averageRating: tmdbMovie.vote_average }} />
             <button
               className="movie-details-button"
               onClick={handleFavoriteClick}
