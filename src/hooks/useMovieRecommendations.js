@@ -13,10 +13,10 @@ const useMovieRecommendations = (movieTitle) => {
         console.log(`Fetching recommendations for: ${movieTitle}`);
         // Fetch recommendations from your backend
         const { data: recommendedMovies } = await axios.get(
-          `http://127.0.0.1:8000/recommendations`,
+          `${import.meta.env.VITE_BACKEND_URL}/recommendations`,
           {
             params: { title: movieTitle },
-          }
+          },
         );
 
         console.log("Recommended Movies:", recommendedMovies);
@@ -25,7 +25,7 @@ const useMovieRecommendations = (movieTitle) => {
         if (error.response && error.response.status === 404) {
           console.error(
             "Error fetching movie recommendations:",
-            error.response.data.error
+            error.response.data.error,
           );
           setError(error.response.data.error);
         } else {

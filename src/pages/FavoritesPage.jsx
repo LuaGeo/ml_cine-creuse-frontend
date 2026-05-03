@@ -11,16 +11,16 @@ const FavoritesPage = () => {
     const fetchFavorites = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/favorites/list/${userId}`
+          `${import.meta.env.VITE_BACKEND_URL}/favorites/list/${userId}`,
         );
         const movieIds = response.data.favoriteMovies;
         const movies = await Promise.all(
           movieIds.map(async (movieId) => {
             const movieResponse = await axios.get(
-              `http://127.0.0.1:8000/movie-details/${movieId}`
+              `${import.meta.env.VITE_BACKEND_URL}/movie-details/${movieId}`,
             );
             return movieResponse.data;
-          })
+          }),
         );
         setFavoritesMovies(movies);
       } catch (error) {
