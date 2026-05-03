@@ -9,20 +9,19 @@ const useSplashMovies = () => {
     const fetchSplashMovies = async () => {
       try {
         const { data: movieIds } = await axios.get(
-          `http://127.0.0.1:8000/splash-movies`
+          `${import.meta.env.VITE_BACKEND_URL}/splash-movies`,
         );
 
-        // Fetch details for each movie using titleId
         const fetchMovieDetails = async (titleId) => {
           const apiKey = import.meta.env.VITE_API_KEY;
           const { data } = await axios.get(
-            `https://api.themoviedb.org/3/movie/${titleId}?api_key=${apiKey}&language=fr&append_to_response=credits`
+            `https://api.themoviedb.org/3/movie/${titleId}?api_key=${apiKey}&language=fr&append_to_response=credits`,
           );
           return data;
         };
 
         const movieDetailsPromises = movieIds.map((movie) =>
-          fetchMovieDetails(movie.titleId)
+          fetchMovieDetails(movie.titleId),
         );
         const movieDetails = await Promise.all(movieDetailsPromises);
 

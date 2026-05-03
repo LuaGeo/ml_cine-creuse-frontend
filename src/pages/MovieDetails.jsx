@@ -14,7 +14,7 @@ const MovieDetails = () => {
   const { favoriteMovies, addFavorite, removeFavorite } = useFavorites();
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/movie-details/${movieId}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/movie-details/${movieId}`)
       .then((response) => response.json())
       .then((data) => setMovie(data))
       .catch((error) => console.error("Error fetching movie details:", error));
@@ -22,7 +22,7 @@ const MovieDetails = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=fr&append_to_response=credits`
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=fr&append_to_response=credits`,
     )
       .then((response) => response.json())
       .then((data) => setTmdbMovie(data))

@@ -8,7 +8,7 @@ const SignUp = ({ isVisible, onClose, onLoginClick }) => {
   if (!isVisible) return null;
 
   const handleSignUp = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
 
     const requestData = {
       method: "POST",
@@ -18,12 +18,15 @@ const SignUp = ({ isVisible, onClose, onLoginClick }) => {
       body: JSON.stringify({ username, email, password }),
     };
 
-    const response = await fetch("http://localhost:8000/register", requestData);
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/register`,
+      requestData,
+    );
 
     if (response.ok) {
       const data = await response.json();
       alert("Registration successful: " + data.message);
-      onClose(); // Close the modal on successful registration
+      onClose();
     } else {
       const data = await response.json();
       alert("Failed to register: " + data.error);

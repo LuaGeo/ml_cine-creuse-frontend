@@ -8,7 +8,7 @@ const Login = ({ isVisible, onClose, onUserLogin }) => {
   if (!isVisible) return null;
 
   const handleLogin = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
 
     const requestData = {
       method: "POST",
@@ -18,19 +18,22 @@ const Login = ({ isVisible, onClose, onUserLogin }) => {
       body: JSON.stringify({ username, password }),
     };
 
-    const response = await fetch("http://localhost:8000/login", requestData);
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/login`,
+      requestData,
+    );
 
     if (response.ok) {
       const data = await response.json();
       alert("Login successful: " + data.message);
-      Cookies.set("token", data.token, { secure: true, sameSite: "None" }); // Store token in cookies
-      Cookies.set("userId", data.userId, { secure: true, sameSite: "None" }); // Store userId in cookies
+      Cookies.set("token", data.token, { secure: true, sameSite: "None" });
+      Cookies.set("userId", data.userId, { secure: true, sameSite: "None" });
       onUserLogin({
         token: data.token,
         username: data.username,
         userId: data.userId,
       });
-      onClose(); // Close the modal on successful login
+      onClose();
     } else {
       const data = await response.json();
       alert("Login failed: " + data.error);
