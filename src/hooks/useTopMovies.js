@@ -3,6 +3,7 @@ import axios from "axios";
 
 const useTopMovies = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true); // ← ajout
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -36,13 +37,15 @@ const useTopMovies = () => {
       } catch (error) {
         console.error("Error fetching top movies:", error);
         setError("An unexpected error occurred.");
+      } finally {
+        setLoading(false); // ← ajout
       }
     };
 
     fetchTopMovies();
   }, []);
 
-  return { movies, error };
+  return { movies, loading, error }; // ← ajout loading
 };
 
 export default useTopMovies;

@@ -6,11 +6,16 @@ import GenreButtons from "../components/GenreButtons";
 import useMovieGenres from "../hooks/useMovieGenres";
 import useTopMovies from "../hooks/useTopMovies";
 import MovieCard from "../components/MovieCard";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const HomePage = () => {
   const { splashMovies, error } = useSplashMovies();
   const { genres, error: genresError } = useMovieGenres();
-  const { movies: topMovies, error: topError } = useTopMovies();
+  const {
+    movies: topMovies,
+    loading: topLoading,
+    error: topError,
+  } = useTopMovies();
   const location = useLocation();
 
   useEffect(() => {
@@ -36,6 +41,8 @@ const HomePage = () => {
           <h2>Recommendations</h2>
           {topError ? (
             <p>{topError}</p>
+          ) : topLoading ? (
+            <LoadingSpinner />
           ) : (
             <div className="carousel-wrapper">
               <div className="carousel">
