@@ -1,4 +1,3 @@
-// src/pages/GenreMoviesPage.jsx
 import { useParams } from "react-router-dom";
 import useMoviesByGenre from "../hooks/useMoviesByGenre";
 import useMovieGenres from "../hooks/useMovieGenres";
@@ -18,13 +17,16 @@ const GenreMoviesPage = () => {
   return (
     <div className="genre-pages">
       <div className="movie-cards-container">
+        {/* Titre du genre sélectionné */}
+        <h2 className="genre-title">{genreId}</h2>
         {loading ? (
           <LoadingSpinner />
         ) : (
           movies.map((movie) => <MovieCard key={movie.titleId} movie={movie} />)
         )}
       </div>
-      <GenreButtons genres={genres} />
+      {/* activeGenre passé pour surligner le bouton actif */}
+      <GenreButtons genres={genres} activeGenre={genreId} />
     </div>
   );
 };

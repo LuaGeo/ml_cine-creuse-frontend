@@ -397,6 +397,12 @@ button:hover {
   color: #000;
 }
 
+.buttons-container button.active {
+  background-color: #f5c518; /* ou ta couleur dorée */
+  color: black;
+  font-weight: bold;
+}
+
 /* ////////////////////////////////////////////// MODALS LAYOUT ////////////////////////////////////////////// */
 
 .modal {

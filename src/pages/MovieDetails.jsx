@@ -86,7 +86,7 @@ const MovieDetails = () => {
         </div>
       </div>
       <h4>Recommendations</h4>
-      <CarouselRecommendations movieTitle={movie.title} />
+      <CarouselRecommendations movieId={movieId} />
     </div>
   );
 };

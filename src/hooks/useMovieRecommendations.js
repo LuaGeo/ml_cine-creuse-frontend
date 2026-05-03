@@ -1,32 +1,23 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useMovieRecommendations = (movieTitle) => {
+const useMovieRecommendations = (movieId) => {
   const [recommendations, setRecommendations] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!movieTitle) return; // Prevent fetching if no movieTitle is provided
+    if (!movieId) return;
 
     const fetchRecommendations = async () => {
       try {
-        console.log(`Fetching recommendations for: ${movieTitle}`);
-        // Fetch recommendations from your backend
+        console.log(`Fetching recommendations for titleId: ${movieId}`);
         const { data: recommendedMovies } = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/recommendations`,
-          {
-            params: { title: movieTitle },
-          },
+          `${import.meta.env.VITE_BACKEND_URL}/recommendations/${movieId}`,
         );
-
         console.log("Recommended Movies:", recommendedMovies);
         setRecommendations(recommendedMovies);
       } catch (error) {
         if (error.response && error.response.status === 404) {
-          console.error(
-            "Error fetching movie recommendations:",
-            error.response.data.error,
-          );
           setError(error.response.data.error);
         } else {
           console.error("Error fetching movie recommendations:", error);
@@ -36,7 +27,7 @@ const useMovieRecommendations = (movieTitle) => {
     };
 
     fetchRecommendations();
-  }, [movieTitle]); // Fetch new recommendations when movieTitle changes
+  }, [movieId]);
 
   return { recommendations, error };
 };

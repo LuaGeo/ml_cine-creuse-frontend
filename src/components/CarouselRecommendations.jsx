@@ -1,10 +1,9 @@
 import useMovieRecommendations from "../hooks/useMovieRecommendations.js";
 import MovieCard from "./MovieCard.jsx";
 
-const CarouselRecommendations = ({ movieTitle, userId }) => {
-  const { recommendations, error } = useMovieRecommendations(movieTitle);
-
-  console.log("Retrieved userId from cookies:", userId);
+// Reçoit movieId (titleId) au lieu de movieTitle
+const CarouselRecommendations = ({ movieId }) => {
+  const { recommendations, error } = useMovieRecommendations(movieId);
 
   if (error) return <p>{error}</p>;
 
