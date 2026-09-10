@@ -6,7 +6,7 @@ import GenreButtons from "../components/GenreButtons";
 import useMovieGenres from "../hooks/useMovieGenres";
 import useTopMovies from "../hooks/useTopMovies";
 import MovieCard from "../components/MovieCard";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingProgress from "../components/LoadingProgress";
 
 const HomePage = () => {
   const { splashMovies, error } = useSplashMovies();
@@ -42,7 +42,10 @@ const HomePage = () => {
           {topError ? (
             <p>{topError}</p>
           ) : topLoading ? (
-            <LoadingSpinner />
+            <LoadingProgress
+              message="Patientez, le serveur se réveille (environ une minute)…"
+              hint="L'hébergement gratuit met le serveur en veille après quelques minutes d'inactivité : le premier chargement est donc lent, les suivants sont rapides."
+            />
           ) : (
             <div className="carousel-wrapper">
               <div className="carousel">

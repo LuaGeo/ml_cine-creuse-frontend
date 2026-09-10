@@ -3,7 +3,7 @@ import useMoviesByGenre from "../hooks/useMoviesByGenre";
 import useMovieGenres from "../hooks/useMovieGenres";
 import MovieCard from "../components/MovieCard";
 import GenreButtons from "../components/GenreButtons";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingProgress from "../components/LoadingProgress";
 
 const GenreMoviesPage = () => {
   const { genreId } = useParams();
@@ -20,7 +20,7 @@ const GenreMoviesPage = () => {
         {/* Titre du genre sélectionné */}
         <h2 className="genre-title">{genreId}</h2>
         {loading ? (
-          <LoadingSpinner />
+          <LoadingProgress message="Chargement des films…" durationMs={20000} />
         ) : (
           movies.map((movie) => <MovieCard key={movie.titleId} movie={movie} />)
         )}
