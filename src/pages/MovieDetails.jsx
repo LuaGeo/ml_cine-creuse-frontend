@@ -3,37 +3,52 @@ import { useParams } from "react-router-dom";
 import CarouselRecommendations from "../components/CarouselRecommendations";
 import Stars from "../components/Stars";
 import CarouselActors from "../components/CarouselActors";
+import LoadingProgress from "../components/LoadingProgress";
 import { useFavorites } from "../hooks/favoritesContext";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
   const [tmdbMovie, setTmdbMovie] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const apiKey = import.meta.env.VITE_API_KEY;
   const { favoriteMovies, addFavorite, removeFavorite } = useFavorites();
 
+  // Détails du film via TMDB directement (rapide) : la page ne dépend plus du
+  // backend Flask, qui est lent et sérialise ses requêtes avec les
+  // recommandations. On réinitialise + on annule la requête précédente à
+  // chaque changement de film pour ne pas afficher les données de l'ancien.
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/movie-details/${movieId}`)
-      .then((response) => response.json())
-      .then((data) => setMovie(data))
-      .catch((error) => console.error("Error fetching movie details:", error));
-  }, [movieId]);
+    const controller = new AbortController();
+    setTmdbMovie(null);
 
-  useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=fr&append_to_response=credits`,
+      { signal: controller.signal },
     )
       .then((response) => response.json())
       .then((data) => setTmdbMovie(data))
-      .catch((error) => console.error("Error fetching movie details:", error));
-  }, [movieId]);
+      .catch((error) => {
+        if (error.name !== "AbortError")
+          console.error("Error fetching movie details:", error);
+      });
+
+    return () => controller.abort();
+  }, [movieId, apiKey]);
 
   useEffect(() => {
     setIsFavorite(favoriteMovies.includes(movieId));
   }, [favoriteMovies, movieId]);
 
-  if (!movie || !tmdbMovie) return <div>Loading...</div>;
+  if (!tmdbMovie)
+    return (
+      <div className="center-content container">
+        <LoadingProgress
+          inline
+          message="Chargement du film…"
+          durationMs={3000}
+        />
+      </div>
+    );
 
   const releaseDate = tmdbMovie.release_date;
   const date = new Date(releaseDate);
@@ -57,13 +72,13 @@ const MovieDetails = () => {
     <div className="center-content container">
       <div className="movie-details">
         <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
+          src={`https://image.tmdb.org/t/p/w500${tmdbMovie.poster_path}`}
+          alt={tmdbMovie.title}
         />
         <div className="movie-details-text">
           <div className="movie-details-text">
             <div>
-              <h2>{movie.title}</h2>
+              <h2>{tmdbMovie.title}</h2>
               <h2 className="year">({year})</h2>
             </div>
             <div className="genres">
