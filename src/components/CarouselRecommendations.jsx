@@ -1,11 +1,22 @@
 import useMovieRecommendations from "../hooks/useMovieRecommendations.js";
 import MovieCard from "./MovieCard.jsx";
+import LoadingProgress from "./LoadingProgress.jsx";
 
 // Reçoit movieId (titleId) au lieu de movieTitle
 const CarouselRecommendations = ({ movieId }) => {
-  const { recommendations, error } = useMovieRecommendations(movieId);
+  const { recommendations, loading, error } = useMovieRecommendations(movieId);
 
   if (error) return <p>{error}</p>;
+
+  if (loading) {
+    return (
+      <LoadingProgress
+        inline
+        message="Chargement des recommandations…"
+        durationMs={8000}
+      />
+    );
+  }
 
   return (
     <div className="carousel-wrapper">

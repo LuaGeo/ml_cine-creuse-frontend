@@ -3,10 +3,15 @@ import axios from "axios";
 
 const useMovieRecommendations = (movieId) => {
   const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!movieId) return;
+
+    setLoading(true);
+    setError(null);
+    setRecommendations([]);
 
     const fetchRecommendations = async () => {
       try {
@@ -23,13 +28,15 @@ const useMovieRecommendations = (movieId) => {
           console.error("Error fetching movie recommendations:", error);
           setError("An unexpected error occurred. Please try again later.");
         }
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchRecommendations();
   }, [movieId]);
 
-  return { recommendations, error };
+  return { recommendations, loading, error };
 };
 
 export default useMovieRecommendations;

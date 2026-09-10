@@ -598,6 +598,13 @@ h4 {
   text-align: center;
 }
 
+.loading-progress--inline {
+  width: 100%;
+  max-width: 440px;
+  margin: 20px auto;
+  padding: 0;
+}
+
 .loading-progress-message {
   margin: 0;
   color: #fff;
